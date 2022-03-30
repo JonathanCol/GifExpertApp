@@ -1,16 +1,20 @@
 import React, { useState } from "react";
 
-const AddCategory = (props) => {
+const AddCategory = ({setCategories}) => {
   const [inputValue, setInputValue] = useState("Hola Mundo");
 
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
   };
 
-  const handleSubmit = (e,props) => {
+  const handleSubmit = (e) => {
         e.preventDefault();
         //console.log("Submit Hecho!");
-       props.setCategories();
+        if(inputValue.trim().length > 2){
+          setCategories( cats => [...cats, inputValue]);
+          setInputValue(''); 
+        }
+       
   }
 
   return (
